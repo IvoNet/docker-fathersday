@@ -3,5 +3,5 @@
 while true;
 do
   # Your application startup here
-  echo TODO
+  python3 /Papadag.py
 done

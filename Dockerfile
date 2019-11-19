@@ -1,5 +1,11 @@
-FROM ivonet/web-gui-base:latest
+FROM ivonet/x11webui:latest
 LABEL maintainer="Ivo Woltring - @ivonet"
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+        python3-tk \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 ARG APP=fathersday
 ARG USERNAME=user

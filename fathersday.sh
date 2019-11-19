@@ -17,12 +17,14 @@ if [ ! "$(docker ps -q -f name=$NAME)" ]; then
         open http://localhost:$PORT
     else
         echo "Starting new $NAME container..."
-        docker run                                    \
-            -d                                        \
-            --name $NAME                              \
-            -e PULSE_SERVER=docker.for.mac.localhost  \
-            -v ~/.config/pulse:/nobody/.config/pulse  \
-            -p $PORT:32000                            \
+        docker run                                   \
+            -d                                       \
+            --name $NAME                             \
+            -e AUTH=${AUTH:-false}                   \
+            -e PULSE_SERVER=docker.for.mac.localhost \
+            -v ~/.config/pulse:/nobody/.config/pulse \
+            -p $PORT:32000                           \
+            -p 5901:5901                             \
             ivonet/fathersday
 
         sleep $WAIT
